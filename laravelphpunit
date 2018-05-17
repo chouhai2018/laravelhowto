@@ -64,18 +64,11 @@ $factory->define(App\blog::class, function (Faker $faker) {
     ];
 });
 
-
-
 5、添加测试数据库文件
-
 命令：php artisan make:test databaseeTest
-
 注明：laravel默认识别文件必须用Test作为后单词，phpunit.xml中默认已经定义
-
 目录：tests/Feature
-
 文件：databaseeTest.php
-
 文件修改如下：
 
 <?php
