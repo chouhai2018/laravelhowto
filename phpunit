@@ -1,0 +1,156 @@
+laravel laravel数据库填充测试
+
+1、新建laravel项目
+命令：composer create-project --prefer-dist laravel/laravel blog
+注明：最好执行下npm install和npm run dev，防止后面的坑
+
+2、新建模型，控制，数据库生成文件，填充文件
+命令：php artisan make:model blog -a
+
+3、修改数据库生成文件
+目录：database/migrations
+文件：2018_05_17_185127_create_blogs_table.php
+注明：文件名时间根据建立时间自动生成
+文件修改如下：
+
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateBlogsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('blogs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title'); //添加标题字段
+            $table->text('body'); //添加内容字段
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('blogs');
+    }
+}
+
+4、修改数据填充文件
+目录：database/factories
+文件：BlogFactory.php
+注明：文件名根据建立-a参数自动生成
+文件修改如下：
+<?php
+
+use Faker\Generator as Faker;
+
+$factory->define(App\blog::class, function (Faker $faker) {
+    return [
+        //
+        'title' => $faker->text(20), //添加生成标题填充20个英文字符
+        'body' =>$faker->text, //添加内容，默认200个英文字符
+    ];
+});
+
+
+
+5、添加测试数据库文件
+
+命令：php artisan make:test databaseeTest
+
+注明：laravel默认识别文件必须用Test作为后单词，phpunit.xml中默认已经定义
+
+目录：tests/Feature
+
+文件：databaseeTest.php
+
+文件修改如下：
+
+<?php
+
+namespace Tests\Feature;
+
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\blog; //添加数据模型
+
+class databaseeTest extends TestCase
+{
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testExample()
+    {
+        $users = factory(blog::class, 30)->create(); //在数据库中使用填充器创建30条数据
+        //        //测试处理，自己写吧
+        $this->assertTrue(true);
+    }
+}
+
+
+6、更新phpunit
+命令：wget -O phpunit https://phar.phpunit.de/phpunit-7.phar
+命令：chomd +x phpunit
+注明：要根据larvel的版本选择，新版框架就用7，系统不要装phpunit，我用的ubuntu默认安装的，坑死我了，根本没用
+
+7、执行phpunit
+命令：./phpunit
+
+结果：
+PHPUnit 7.1.5 by Sebastian Bergmann and contributors.
+
+
+
+...                                                                 3 / 3 (100%)
+
+
+Time: 3.86 seconds, Memory: 20.00MB
+OK (3 tests, 3 assertions)
+
+查看数据库
+use blog;
+
+select * from blogs;
+
+
+
+.........
+
+
+
+0:51:19 | 2018-05-17 20:51:19 |
+
+| 27 | Ut blanditiis.       | Quas exercitationem beatae quo provident. Nisi ut laudantium adipisci adipisci et natus. Commodi sed nisi fuga. Vel inventore omnis vel sequi et sit.                                                | 2018-05-17 20:51:19 | 2018-05-17 20:51:19 |
+
+| 28 | Nihil illum qui.     | Culpa qui sint quae reiciendis a odio hic. Excepturi nobis excepturi excepturi. Delectus harum nemo dolor. Sed et sed est.                                                                           | 2018-05-17 20:51:20 | 2018-05-17 20:51:20 |
+
+| 29 | Quis occaecati.      | Ducimus voluptate libero doloremque magni. Voluptatem reiciendis autem veniam qui facere. Recusandae laudantium quis qui sit.                                                                        | 2018-05-17 20:51:20 | 2018-05-17 20:51:20 |
+
+| 30 | Ut tempore amet et.  | Quo enim iusto necessitatibus exercitationem. Accusamus excepturi deserunt ex magnam impedit nisi ullam. Hic exercitationem in explicabo ut. Rerum quo optio et eos sapiente eaque non.              | 2018-05-17 20:51:20 | 2018-05-17 20:51:20 |
+
++----+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------+
+
+30 rows in set (0.00 sec)
+
+
+
+mysql> 
+
+
+
+写入数据成功
