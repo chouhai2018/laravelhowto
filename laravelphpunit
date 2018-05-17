@@ -1,4 +1,4 @@
-laravel laravel数据库填充测试
+laravel+phpunit数据库填充测试
 
 1、新建laravel项目
 命令：composer create-project --prefer-dist laravel/laravel blog
