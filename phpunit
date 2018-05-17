@@ -108,49 +108,31 @@ class databaseeTest extends TestCase
 命令：chomd +x phpunit
 注明：要根据larvel的版本选择，新版框架就用7，系统不要装phpunit，我用的ubuntu默认安装的，坑死我了，根本没用
 
-7、执行phpunit
+7、执行phpunit和创建数据表
+命令：php artisan migrate
 命令：./phpunit
 
 结果：
 PHPUnit 7.1.5 by Sebastian Bergmann and contributors.
 
-
-
 ...                                                                 3 / 3 (100%)
 
+Time: 5.12 seconds, Memory: 20.00MB
 
-Time: 3.86 seconds, Memory: 20.00MB
 OK (3 tests, 3 assertions)
+
 
 查看数据库
 use blog;
-
 select * from blogs;
-
-
-
 .........
-
-
-
 0:51:19 | 2018-05-17 20:51:19 |
-
 | 27 | Ut blanditiis.       | Quas exercitationem beatae quo provident. Nisi ut laudantium adipisci adipisci et natus. Commodi sed nisi fuga. Vel inventore omnis vel sequi et sit.                                                | 2018-05-17 20:51:19 | 2018-05-17 20:51:19 |
-
 | 28 | Nihil illum qui.     | Culpa qui sint quae reiciendis a odio hic. Excepturi nobis excepturi excepturi. Delectus harum nemo dolor. Sed et sed est.                                                                           | 2018-05-17 20:51:20 | 2018-05-17 20:51:20 |
-
 | 29 | Quis occaecati.      | Ducimus voluptate libero doloremque magni. Voluptatem reiciendis autem veniam qui facere. Recusandae laudantium quis qui sit.                                                                        | 2018-05-17 20:51:20 | 2018-05-17 20:51:20 |
-
 | 30 | Ut tempore amet et.  | Quo enim iusto necessitatibus exercitationem. Accusamus excepturi deserunt ex magnam impedit nisi ullam. Hic exercitationem in explicabo ut. Rerum quo optio et eos sapiente eaque non.              | 2018-05-17 20:51:20 | 2018-05-17 20:51:20 |
-
 +----+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------+
-
 30 rows in set (0.00 sec)
-
-
-
 mysql> 
-
-
 
 写入数据成功
