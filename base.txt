@@ -47,3 +47,10 @@ Route::get('/{id}/{bodyid}', function ($id,$bodyid) {
     return view('welcome',compact('body'));
 });
 
+写入基础
+$blog=new App\blog;
+$blog->title='titile';
+$blog->body='body';
+$blog->save();
+
+
