@@ -53,4 +53,25 @@ $blog->title='titile';
 $blog->body='body';
 $blog->save();
 
+控制
+public function show(blog $blog)
+对应
+Route::get('/{blog}'，BlogController@show);
 
+view
+<form action="/blogpost" method="post">
+    <label>title</label>
+    <input type="text" id="title" name="title">
+    <label>title</label>
+    <textarea id="body" name="body"></textarea>
+</form>
+
+路由
+
+Route::post('/blogpost','BlogController@store');
+
+控制
+$blog=new /App/blog;
+$blog->title=request('title');
+$blog->body=request('body');
+$blog->save();
