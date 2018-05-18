@@ -33,3 +33,17 @@ Route::get('/{id}', function ($id) {
 Route::get('/{id}/{bodyid}', function ($id,$bodyid) {
 dd($id,$bodyid);
 });
+
+Route::get('/{id}/{bodyid}', function ($id,$bodyid) {
+//dd($id,$bodyid)
+    $body=DB::table('blogs')->find($id);
+    dd($body);
+});
+
+Route::get('/{id}/{bodyid}', function ($id,$bodyid) {
+//dd($id,$bodyid)
+    $body=DB::table('blogs')->find($id); //find返回为字符，前台不能用foreach，直接{{ $body-title }}输出即可
+// dd($body);
+    return view('welcome',compact('body'));
+});
+
