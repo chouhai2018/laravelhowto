@@ -1,0 +1,79 @@
+css和js导入
+
+js例子:
+cnpm install holderjs //安装holderjs
+在blog/resources/js/app.js中添加holderjs
+
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+require('./bootstrap'); //引入当前目录的js文件
+require('holderjs'); //添加js
+
+window.Vue = require('vue');
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
+
+const app = new Vue({
+    el: '#app'
+});
+
+运行cnpm run dev后js文件自动进入js/app.js
+
+视图引入:
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    
+css例子:
+新框架好像只认识scss的css文件,别的没试,默认的东西不想修改
+在blog/resources/sass/添加_blog.scss
+在blog/resources/sass/app.scss添加自定义的scss文件
+
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+@import "blog"; //文件名必须前缀用_,必须用scss后缀名
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+运行cnpm run dev后自动添加到css/app.css文件中
+
+视图引用
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+@import "blog";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+这样只维护js和sass控制就好了,页面引用写一次就全能用了
