@@ -13,7 +13,7 @@ return view('view',compact('name','age','say'));
 
 数据库基础
 --1-----------------------------------
-$body=DB:table('blogs')->get();
+$body=DB:table('blogs')->get(); //$body=App\blog::all()
 return $body;
 --2-----------------------------------
 $body=DB::table('blogs')->get();
@@ -26,7 +26,7 @@ return view('welcome',compact('body'));
 url传参
 Route::get('/{id}', function ($id) {
 //dd($id);
-    $body=DB::table('blogs')->Where('id',$id)->get();
+    $body=DB::table('blogs')->Where('id',$id)->get(); //$bodyblog::where('id','<' ,'3')->get()
     return view('welcome',compact('body'));
 });
 
@@ -36,7 +36,7 @@ dd($id,$bodyid);
 
 Route::get('/{id}/{bodyid}', function ($id,$bodyid) {
 //dd($id,$bodyid)
-    $body=DB::table('blogs')->find($id);
+    $body=DB::table('blogs')->find($id); //$body=App\blog::find($id);
     dd($body);
 });
 
