@@ -10,3 +10,26 @@ return view('view')->with('name',$name)->with('age',$age)->with('say','hello');
 
 say='hello';
 return view('view',compact('name','age','say'));
+
+数据库基础
+--1-----------------------------------
+$body=DB:table('blogs')->get();
+return $body;
+--2-----------------------------------
+$body=DB::table('blogs')->get();
+return view('welcome',compact('body'));
+--html-----------------------------------
+@foreach($body as $body)
+{{ $body->title }}
+@endforeach
+
+url传参
+Route::get('/{id}', function ($id) {
+//dd($id);
+    $body=DB::table('blogs')->Where('id',$id)->get();
+    return view('welcome',compact('body'));
+});
+
+Route::get('/{id}/{bodyid}', function ($id,$bodyid) {
+dd($id,$bodyid);
+});
