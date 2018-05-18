@@ -1,0 +1,12 @@
+参数传递：
+$name=[
+'a'
+'b'
+'c'
+];
+$age=30;
+return view('view',['name'=>$name,'age'=>$age,'say'=>'hello']);
+return view('view')->with('name',$name)->with('age',$age)->with('say','hello');
+
+say='hello';
+return view('view',compact('name','age','say'));
