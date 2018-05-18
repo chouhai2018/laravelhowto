@@ -60,6 +60,7 @@ Route::get('/{blog}'，BlogController@show);
 
 view
 <form action="/blogpost" method="post">
+    @csrf
     <label>title</label>
     <input type="text" id="title" name="title">
     <label>title</label>
