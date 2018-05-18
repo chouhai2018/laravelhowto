@@ -76,3 +76,6 @@ $blog=new /App/blog;
 $blog->title=request('title');
 $blog->body=request('body');
 $blog->save();
+
+自定义显示时间
+ {{ date ("F j, Y, G:i", strtotime($blogs->created_at)) }} 
