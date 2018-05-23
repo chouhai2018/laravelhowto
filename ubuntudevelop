@@ -1,0 +1,8 @@
+ubuntu开发环境
+安装Sougou输入法
+apt install libcanberra-gtk-module
+echo 'export XMODIFIERS="@im=fcitx"' >> ~.bashrc
+apt remove ibus* --purge
+apt install gtk2-engines
+安装sogou
+在语言里面选择fcitx，应用到整个系统，重启后就好了
