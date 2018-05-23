@@ -31,8 +31,11 @@ server {
                 deny all;
         }
 }
+
+sudo /usr/sbin/make-ssl-cert generate-default-snakeoil
 重启nginx
 sudo /etc/init.d/nginx restart
+
 4、安装mysql
 sudo apt install mysql-server -y
 5、安装node.js npm
