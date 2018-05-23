@@ -1,17 +1,17 @@
 ubuntu 18.04 PHP开发环境
 1、安装Sougou输入法
-apt install libcanberra-gtk-module -y
+sudo apt install libcanberra-gtk-module -y
 echo 'export XMODIFIERS="@im=fcitx"' >> ~.bashrc
-apt remove ibus* --purge -y
-apt install gtk2-engines -y
-安装sogou
+sudo apt remove ibus* --purge -y
+sudo apt install gtk2-engines -y
+下载sogou，安装sogou
 在语言里面选择fcitx，应用到整个系统，重启后就好了
 2、安装php
-apt install php7.2-cli php7.2-bcmath php7.2-bz2 php7.2-curl php7.2-dev php7.2-enchant php7.2-fpm php7.2-gd php7.2-gmp php7.2-imap php7.2-intl php7.2-json php7.2-mbstring php7.2-mysql php7.2-opcache php7.2-pspell php7.2-readline php7.2-recode php7.2-soap php7.2-tidy php7.2-xml php7.2-xmlrpc php7.2-xsl php7.2-zip -y
+sudo apt install php7.2-cli php7.2-bcmath php7.2-bz2 php7.2-curl php7.2-dev php7.2-enchant php7.2-fpm php7.2-gd php7.2-gmp php7.2-imap php7.2-intl php7.2-json php7.2-mbstring php7.2-mysql php7.2-opcache php7.2-pspell php7.2-readline php7.2-recode php7.2-soap php7.2-tidy php7.2-xml php7.2-xmlrpc php7.2-xsl php7.2-zip -y
 3、安装nginx
-apt install nginx -y
+sudo apt install nginx -y
 配置
-vi /etc/nginx/sites-enabled/default
+sudo vi /etc/nginx/sites-enabled/default
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -32,9 +32,24 @@ server {
         }
 }
 重启nginx
-/etc/init.d/nginx restart
+sudo /etc/init.d/nginx restart
 4、安装mysql
-apt install mysql-server -y
+sudo apt install mysql-server -y
+5、安装node.js npm
+sudo apt install nodejs npm -y
+安装cnpm
+sudo npm install -g cnpm --registry=https://registry.npm.taobao.org
+6、安装composer
+sudo apt install composer -y
+注：修改composer中国镜像
+composer config -g repo.packagist composer https://packagist.phpcomposer.com
+7、安装phpmyadmin
+下载，解压缩，移动到/var/www/html/phpmyadmin //移动需要root用户
+8、安装redis
+sudo apt install redis -y
+9、建立laravel项目
+composer config -g repo.packagist composer https://packagist.phpcomposer.com
+composer create-project --prefer-dist laravel/laravel 项目名称
 
         
 
