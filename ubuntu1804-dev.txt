@@ -1,0 +1,11 @@
+ubuntu 18.04 PHP开发环境
+1、安装Sougou输入法
+apt install libcanberra-gtk-module -y
+echo 'export XMODIFIERS="@im=fcitx"' >> ~.bashrc
+apt remove ibus* --purge -y
+apt install gtk2-engines -y
+安装sogou
+在语言里面选择fcitx，应用到整个系统，重启后就好了
+2、安装php
+apt install php7.2-cli php7.2-bcmath php7.2-bz2 php7.2-curl php7.2-dev php7.2-enchant php7.2-fpm php7.2-gd php7.2-gmp php7.2-imap php7.2-intl php7.2-json php7.2-mbstring php7.2-mysql php7.2-opcache php7.2-pspell php7.2-readline php7.2-recode php7.2-soap php7.2-tidy php7.2-xml php7.2-xmlrpc php7.2-xsl php7.2-zip -y
+3、安装nginx
