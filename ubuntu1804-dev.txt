@@ -31,6 +31,10 @@ server {
                 deny all;
         }
 }
+重启nginx
+/etc/init.d/nginx restart
+4、安装mysql
+apt install mysql-server -y
 
         
 
