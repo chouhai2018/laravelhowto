@@ -49,6 +49,7 @@ composer config -g repo.packagist composer https://packagist.phpcomposer.com
 sudo apt install redis -y
 9、建立laravel项目
 composer config -g repo.packagist composer https://packagist.phpcomposer.com
+composer global require "laravel/installer"
 composer create-project --prefer-dist laravel/laravel 项目名称
 10、初始化laravel项目
 cd 项目名称
