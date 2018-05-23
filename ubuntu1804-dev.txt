@@ -63,5 +63,5 @@ chmod +x phpunit
 ./phpunit
 测试通过，完成
 12、ide看自己喜欢了,推荐个编码字体
-apt install fonts-mononoki
+sudo apt install fonts-mononoki
 
