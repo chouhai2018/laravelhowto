@@ -62,5 +62,6 @@ wget -O phpunit https://phar.phpunit.de/phpunit-7.phar
 chmod +x phpunit
 ./phpunit
 测试通过，完成
-12、ide看自己喜欢了
+12、ide看自己喜欢了,推荐个编码字体
+apt install fonts-mononoki
 
