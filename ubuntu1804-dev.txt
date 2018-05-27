@@ -1,9 +1,5 @@
 ubuntu 18.04 PHP开发环境
 1、安装Sougou输入法
-sudo apt install libcanberra-gtk-module -y
-echo 'export XMODIFIERS="@im=fcitx"' >> ~.bashrc
-sudo apt remove ibus* --purge -y
-sudo apt install gtk2-engines -y
 下载sogou，安装sogou
 在语言里面选择fcitx，应用到整个系统，重启后就好了
 2、安装php
