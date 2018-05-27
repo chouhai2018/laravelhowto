@@ -15,3 +15,55 @@ $belongsTo
 1、外键放置在主表中；  
 2、保存时不会自动更新关联表的记录；  
 3、删除时也不会更新关联表的记录。
+
+ namespace App;
+use Illuminate\Database\Eloquent\Model;
+
+class FalseDeliveryGoods extends Model
+{
+    protected $table = 'false_delivery_goods';
+    protected $fillable = ['id',
+        'goods_id',
+        'mall_id',
+        'sample_total',
+        'take_sample_total',
+        'task_status',
+        'start_time',
+        'yunying_name',
+        'fake_total',
+        'end_time',
+        'operator_name'
+    ];
+    public function goods()
+    {
+        return $this->hasOne('App\ShopGoods', 'id', 'goods_id');
+    }
+    
+    
+传到 hasOne 方法里的第一个参数是关联模型的类名称。定义好关联之后，
+
+就可以使用 Eloquent 的动态属性取得关联对象：
+
+>hasOne('class_name', 'foreign_key', 'local_key');
+
+ namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class ShopGoods extends Model
+
+{
+
+         protected $connection = 'shop';
+
+         protected $table = 'goods';
+
+         public function mall()
+
+         {
+
+                   return  $this->belongsTo('App\Mall');
+
+         }
+
+}
