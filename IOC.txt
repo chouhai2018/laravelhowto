@@ -1,0 +1,51 @@
+1.希望DB类，Session类，FileSystem类“拿来即用”，不用每次繁琐的初始化，比如写$db=new DB(arg1,arg2);这类语句。
+
+2.希望DB等类型的对象是“全局”，在整个程序运行期间，随时可以调用。
+
+3.调用DB等类型的程序员不用知道这个类太多的细节，甚至可以用一个字符串的别名来创建这样一个对象。
+
+能够实现以上目标的就是IOC容器，可以把IOC容器简单的看成一个全局变量，并用关联数组把字符串和构造函数做绑定。
+
+我们先实现一个容器类
+
+class Container{
+    public $bindings;
+    public function bind($abstract,$concrete){
+        $this->bindings[$abstract]=$concrete;
+    }
+    public function make($abstract,$parameters=[]){
+        return call_user_func_array($this->bindings[$abstract],$parameters);
+    }
+}
+
+服务注册（绑定）
+
+$container=new Container();
+$container->bind('db',function($arg1,$arg2){
+    return new DB($arg1,$arg2);
+});
+ 
+$container->bind('session',function($arg1,$arg2){
+    return new Session($arg1,$arg2);
+});
+ 
+$container->bind('fs',function($arg1,$arg2){
+    return new FileSystem($arg1,$arg2);
+});
+
+容器依赖
+
+	
+class Writer{
+    protected $_db;
+    protected $_filesystem;
+    protected $_session;
+    protected $container;
+    public function Writer(Container $container){
+        $this->_db=$container->make('db',[1,2]);
+        $this->_filesystem=$container->make('session',[3,4]);
+        $this->_session=$container->make('fs',[5,6]);
+    }
+}
+ 
+$writer=new Writer($container);
