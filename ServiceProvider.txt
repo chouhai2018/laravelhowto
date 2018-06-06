@@ -1,0 +1,29 @@
+1、新建类
+<?php
+
+namespace Wx;
+
+class Myshop
+{
+    static function wxshow()
+    {
+        return 'this wx app';
+    }
+
+}
+
+2、新建ServiceProvider
+public function register()
+    {
+
+        $this->app->bind('wx', function () {
+            $wx = new Myshop;
+            return $wx->wxshow();
+        });
+
+        $this->app->bind('wx1', 'Wx\Myshop');
+    }
+3、使用ServiceProvider
+App::make('wx');
+
+使用Myshop wxshow方法
