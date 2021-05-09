@@ -1,0 +1,29 @@
+Laravel备份-总有一天你要感谢我
+Laravel-backup
+此备份软件需要PHP 8.0，ZIP模块和Laravel 8.0或更高版本。它与Windows服务器不兼容。
+该软件包需要可用的磁盘空间，可以在其中创建备份。确保您的可用空间至少等于要备份的文件总大小。
+mysqldump如果要备份MySQL数据库，请确保已在系统上安装。
+pg_dump如果要备份PostgreSQL数据库，请确保已在系统上安装。
+mongodump如果要备份Mongo数据库，请确保已在系统上安装。
+要将通知发送到Slack，您需要安装laravel/slack-notification-channel：
+-----------------
+安装
+安装支持软
+composer require laravel/slack-notification-channel
+清除缓存
+php artisan cache:clear
+php artisan config:clear
+执行安装
+composer require spatie/laravel-backup
+新缓存
+php artisan optimize
+--------------
+进行备份
+php artisan backup:run
+备份文件位置
+storage/app/Laravel/
+
+清除备份文件
+php artisan backup:clean
+
+参考:https://spatie.be/docs/laravel-backup/v7/introduction
