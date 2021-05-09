@@ -1,0 +1,86 @@
+laravel日志查看器(Log Viewer)
+
+该软件包使您可以管理和跟踪每个日志文件。
+注意：您也可以将LogViewer用作API。
+
+特征:
+出色的Log Viewer API。
+Laravel5.x以8.x支持。
+随时可用（视图，路线，控制器……开箱即用）
+查看，分页，过滤，下载和删除日志。
+加载自定义日志存储路径。
+本地化的日志级别。
+日志菜单/树生成器。
+按日期和级别对日志进行分组。
+自定义的日志级别图标（默认情况下字体很棒）。
+适用于大型项目！
+详细记录的软件包（IDE友好）。
+经过良好测试（100％的代码覆盖率和最高的代码质量）。
+
+安装前准备：
+LogViewer仅支持每日日志通道，因此请确保.env文件中将LOG_CHANNEL设置为，daily而不是stack。
+
+LOG_CHANNEL=daily
+
+对于Laravel 5.5及更低版本，请在您的.env文件中进行设置
+
+APP_LOG=daily
+
+
+
+安装：
+您可以通过运行以下命令通过Composer安装此软件包：composer require arcanedev/log-viewer:{x.x}其中xx是与laravel版本兼容的版本。
+
+例如composer require arcanedev/log-viewer:~4.6.0 Laravel v5.7。
+laravel版本	日志查看器版本
+Laravel v8.x	LogViewer v8.x
+Laravel v7.x	LogViewer v7.x
+Laravel v6.x	LogViewer v5.x
+Laravel v5.8	LogViewer v4.7.x
+Laravel v5.7	LogViewer v4.6.x
+Laravel v5.6	LogViewer v4.5.x
+Laravel v5.5	LogViewer v4.4.x
+Laravel v5.4	LogViewer v4.3.x
+Laravel v5.3	LogViewer v4.2.x
+Laravel v5.2	LogViewer v4.2.x
+Laravel v5.1	LogViewer v4.2.x
+Laravel v5.0	LogViewer v4.2.x
+
+设置：
+注意：如果您使用Laravel >= v5.5，该软件包将自动注册自己，因此您可以跳过此部分。
+安装软件包后，您可以config/app.php在providers阵列中注册服务提供商：
+
+'提供者' => [
+    。。。
+    Arcanedev \ LogViewer \ LogViewerServiceProvider :: class，
+]，
+无需注册LogViewer视图，它是自动完成的。
+
+发布命令：
+要发布配置和翻译文件，请运行以下命令：
+php artisan log-viewer:publish
+强制发布
+php artisan log-viewer:publish --force
+仅发布配置
+php artisan log-viewer:publish --tag=config
+要强制发布，请添加--force标志。
+仅发布翻译
+php artisan log-viewer:publish --tag=translations
+要强制发布，请添加--force标志。
+日志文件检查
+php artisan log-viewer:check
+清除所有生成的日志文件
+php artisan log-viewer:clear
+
+访问：
+http://{域名或ip}/log-viewer
+
+附录：
+详细配置 https://github.com/ARCANEDEV/LogViewer/blob/master/_docs/2.Configuration.md
+文章参考原文 https://github.com/ARCANEDEV/LogViewer
+
+测试命令：
+php artisan tinker
+\Illuminate\Support\Facades\Log::error('来个错误日志的测试');
+
+应用截图
