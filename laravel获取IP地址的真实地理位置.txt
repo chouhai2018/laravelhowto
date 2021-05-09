@@ -1,0 +1,69 @@
+laravel获取IP地址的真实地理位置
+
+国内：
+composer require "zhuzhichao/ip-location-zh"
+Ip::find('171.12.10.156') //指定ip查询
+Ip::find(Request::getClientIp()) //来自客户访问
+
+// 返回结果
+array (size=4)
+  0 => string '中国' (length=6)
+  1 => string '河南' (length=6)
+  2 => string '郑州' (length=6)
+  3 => string '' (length=0)
+  4 => string '410100' (length=6)
+  
+转json例子
+return json_encode(Ip::find('8.8.8.8'));
+输出:
+["GOOGLE.COM","GOOGLE.COM","","",""]
+
+国外：
+composer require torann/geoip
+
+编辑.env
+修改CACHE_DRIVER=file为CACHE_DRIVER=array
+
+编辑config/app.php
+'providers' => [ 
+
+    \Torann\GeoIP\GeoIPServiceProvider::class, //添加
+
+]
+
+'aliases' => [
+
+    'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class, //添加
+
+];
+
+执行
+php artisan vendor:publish --provider="Torann\GeoIP\GeoIPServiceProvider" --tag=config
+
+执行
+php artisan geoip:update
+
+例子:
+getLocation(geoip()->getClientIP());
+geoip()->getLocation('8.8.8.8');
+
+使用var_dump()输出
+object(Torann\GeoIP\Location)#330 (1) { ["attributes":protected]=> array(13) { ["ip"]=> string(7) "8.8.8.8" ["iso_code"]=> string(2) "US" ["country"]=> string(13) "United States" ["city"]=> string(7) "Ashburn" ["state"]=> string(2) "VA" ["state_name"]=> string(8) "Virginia" ["postal_code"]=> string(5) "20149" ["lat"]=> float(39.03) ["lon"]=> float(-77.5) ["timezone"]=> string(16) "America/New_York" ["continent"]=> string(2) "NA" ["currency"]=> string(3) "USD" ["default"]=> bool(false) } } 
+
+转json例子
+    $json = geoip()->getLocation('8.8.8.8');
+    return [
+        'ip' => $json->ip,
+        'iso_code' => $json->iso_code,
+        'country' => $json->country,
+        'city' => $json->city,
+        'state' => $json->state,
+        'state_name' => $json->state_name,
+        'postal_code' => $json->postal_code,
+        'lat' => $json->lat,
+        'lon' => $json->lon,
+        'timezone' => $json->timezone,
+        'continent' => $json->continent,
+    ];
+输出:
+{"ip":"8.8.8.8","iso_code":"US","country":"United States","city":"Ashburn","state":"VA","state_name":"Virginia","postal_code":"20149","lat":39.03,"lon":-77.5,"timezone":"America\/New_York","continent":"NA"}
